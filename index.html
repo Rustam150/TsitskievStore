@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TsitskievStore - Магазин электроники</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <h1>TsitskievStore</h1>
+                </div>
+                
+                <nav class="nav">
+                    <a href="#home" class="nav__link">Главная</a>
+                    <a href="#catalog" class="nav__link">Каталог</a>
+                    <a href="#about" class="nav__link">О нас</a>
+                </nav>
+
+                <div class="header__actions">
+                    <div class="search">
+                        <input type="text" id="searchInput" placeholder="Поиск товаров...">
+                    </div>
+                    <button class="wishlist-btn" id="wishlistButton" title="Избранное">
+                        ❤️ <span class="wishlist-count">0</span>
+                    </button>
+                    <button class="cart-btn" id="cartButton">
+                        🛒 Корзина <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero__content">
+                <h2>Новейшая техника 2025</h2>
+                <p>Откройте мир инноваций с TsitskievStore</p>
+                <button class="btn btn-primary" onclick="scrollToCatalog()">Смотреть каталог</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="productsCount">16</span>
+                    <span class="stat-label">Товаров в каталоге</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="categoriesCount">5</span>
+                    <span class="stat-label">Категорий</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Поддержка</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Гарантия качества</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">Все категории</option>
+                    <option value="smartphones">Смартфоны</option>
+                    <option value="laptops">Ноутбуки</option>
+                    <option value="tablets">Планшеты</option>
+                    <option value="headphones">Наушники</option>
+                    <option value="watches">Часы</option>
+                </select>
+
+                <select id="brandFilter" class="filter-select">
+                    <option value="all">Все бренды</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Xiaomi">Xiaomi</option>
+                    <option value="Google">Google</option>
+                    <option value="OnePlus">OnePlus</option>
+                </select>
+
+                <select id="sortSelect" class="filter-select">
+                    <option value="default">По умолчанию</option>
+                    <option value="price_asc">Цена по возрастанию</option>
+                    <option value="price_desc">Цена по убыванию</option>
+                    <option value="rating">По рейтингу</option>
+                    <option value="newest">Сначала новые</option>
+                </select>
+
+                <input type="number" id="priceMin" placeholder="Цена от" class="price-input">
+                <input type="number" id="priceMax" placeholder="Цена до" class="price-input">
+            </div>
+            
+            <!-- Дополнительные фильтры -->
+            <div class="filter-options">
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="stockFilter"> Только в наличии
+                </label>
+                <button class="btn btn-outline btn-sm" id="resetFilters">🔄 Сбросить фильтры</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section" id="catalog">
+        <div class="container">
+            <h2 class="section-title">Каталог товаров</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Товары будут рендериться здесь через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">О нашем магазине</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>TsitskievStore - лидер в продаже электроники</h3>
+                    <p>Мы предлагаем только качественную технику от проверенных брендов с гарантией и быстрой доставкой.</p>
+                    <div class="features">
+                        <div class="feature">🚚 Быстрая доставка</div>
+                        <div class="feature">🔒 Гарантия качества</div>
+                        <div class="feature">💳 Удобная оплата</div>
+                        <div class="feature">🛠️ Сервисное обслуживание</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3>Корзина покупок</h3>
+                <button class="modal__close" id="closeCart">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div id="cartItems">
+                    <!-- Товары в корзине -->
+                </div>
+                <div class="cart-total">
+                    <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn-secondary" id="clearCart">Очистить корзину</button>
+                <button class="btn btn-primary" id="checkout">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snow Animation Canvas -->
+    <canvas id="snowCanvas"></canvas>
+
+    <script src="js/data/products.js"></script>
+    <script src="js/components/snow.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
