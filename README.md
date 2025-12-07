@@ -20,5 +20,5 @@
 
  GitHub Pages
 
-Сайт доступен по адресу: https://[rustamTS].github.io/TsitskievStore/
+Сайт доступен по адресу: https://rustam150.github.io/#about
 
